@@ -1,0 +1,60 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+typedef struct
+{
+    int weight;
+    int parent, lchild, rchild;
+} HufmTree;
+
+typedef  struct
+// 哈夫曼编码的存储结构
+{
+    char  ch;
+    char  bits[n + 1];
+}CodeNode;
+typedef CodeNode HuffmanCode[n];
+
+void CreatHuffman(HufmTree tree[], int n)
+{
+    //构造哈夫曼树，n为初始森林中的结点数
+    int  i, j, t1, t2;
+    if (n <= 1) return;
+    m = 2 * n;             //下标为0的单元不用
+    for (i = 1; i < m; i++) //对数组初始化
+    {
+        tree[i].parent = 0;    tree[i].lchild = 0;
+        tree[i].rchild = 0;      tree[i].weight = 0;
+    }
+    for (i = 1; i <= n; i++) scanf(&tree[i].weight); //读入叶结点权值    
+    for (i = n + 1; i < m; i++)  //进行合并，产生n - 1个新结点
+    {
+        Select(tree, i - 1, t1, t2);
+        //选出tarent 的值为0且权值最小的两个结点,序号为t1,t2
+        tree[t1].parent = i;  tree[t2].parent = i;
+        tree[i].lchild = t1;   tree[i].rchild = t2;
+        tree[i].weight = tree[t1].weight + tree[t2].weight;
+    } //for
+} //CreatHuffman
+
+void HuffmanCoding(HufmTree tree[], HuffmanCode H[])
+{// 根据哈夫曼树tree求哈夫曼编码
+    int   c, t, i;   // c指向孩子，t 指向双亲的位置
+    int   start;	// 指示编码在临时向量中的起始位置
+    char  cd[n + 1]; // 存放编码的临时向量
+    cd[n] = '\ 0'; // 编码结束符
+    for (i = 0; i < n; i++)
+    {
+        H[i].ch = tree[i]; // 输入叶子结点tree[i]中的字符
+        start = n;  // 编码起始位置的初值
+        c = i;
+        while (t = tree[c].parent) // 从叶结点开始上溯，直到根
+        {
+            if (tree[t].lchild == c) // 如果tree[c]是tree[t]的左孩子，则生成代码‘0’
+                cd[--start] = '0';
+            else  cd[--start] = '1';   // 如果tree[c]是tree[t]的右孩子，则生成代码’1’
+            c = t;  //  继续上溯
+        }
+        strcpy(H[i].bits, cd[start]); //  复制编码字符串
+    } // for
+}//  HuffmanCoding
