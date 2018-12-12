@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{B203BF98-4325-46A8-B04D-A7FBFECEFB44}</ProjectGuid>
-    <RootNamespace>二叉树</RootNamespace>
+    <ProjectGuid>{13F595AD-E4F2-413F-8226-4E0196F8EFCA}</ProjectGuid>
+    <RootNamespace>图</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -116,13 +116,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="哈夫曼树参考.txt" />
-    <ClCompile Include="哈夫曼树与编码.c">
-      <FileType>CppCode</FileType>
+    <ClCompile Include="拓扑排序_有向图的邻接表.cpp" />
+    <ClCompile Include="有向图的邻接矩阵.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="哈夫曼树与编码_进阶.c" />
-    <ClCompile Include="普通二叉树的递归与非递归遍历（前序、中序、后序%29.cpp" />
+    <ClCompile Include="邻接表.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
